@@ -109,6 +109,45 @@
 //
 // Limit Switches
 //
+#ifdef FOAMCUTTER
+#ifndef X_STOP_PIN
+  #ifndef X_MIN_PIN
+    #define X_MIN_PIN                          3  // X-
+  #endif
+  #ifndef X_MAX_PIN
+   // #define X_MAX_PIN                          2  // X+
+  #endif
+#endif
+#ifndef Y_STOP_PIN
+  #ifndef Y_MIN_PIN
+    //#define Y_MIN_PIN                         14  // Y-
+    #define Y_MIN_PIN                         2  // Y- Was X_MAX
+  #endif
+  #ifndef Y_MAX_PIN
+   // #define Y_MAX_PIN                         15  // Y+
+  #endif
+#endif
+#ifndef Z_STOP_PIN
+  #ifndef Z_MIN_PIN
+    //#define Z_MIN_PIN                         18  // Z-
+    #define Z_MIN_PIN                         14  // Z- was Y_MIN
+  #endif
+  #ifndef Z_MAX_PIN
+    //#define Z_MAX_PIN                         19  // Z+
+  #endif
+#endif
+#ifndef I_STOP_PIN
+  #ifndef I_MIN_PIN
+    #define I_MIN_PIN                           15  //was Y_MAX
+  #endif
+#endif
+
+#ifndef J_STOP_PIN
+  #ifndef J_MIN_PIN
+    #define J_MIN_PIN                           18  //was Z_MIN
+  #endif
+#endif
+#else
 #ifndef X_STOP_PIN
   #ifndef X_MIN_PIN
     #define X_MIN_PIN                          3  // X-
@@ -133,7 +172,7 @@
     #define Z_MAX_PIN                         19  // Z+
   #endif
 #endif
-
+#endif
 //
 // Z Probe (when not Z_MIN_PIN)
 //
@@ -171,6 +210,17 @@
   #define Z_CS_PIN                       AUX2_06
 #endif
 
+#ifdef FOAMCUTTER
+  #define I_STEP_PIN                         26
+  #define I_DIR_PIN                          28
+  #define I_ENABLE_PIN                       24
+  #define I_CS_PIN                      AUX2_08
+
+  #define J_STEP_PIN                         36
+  #define J_DIR_PIN                          34
+  #define J_ENABLE_PIN                       30
+  #define J_CS_PIN                      AUX2_07
+#else
 #ifndef E0_STEP_PIN
   #define E0_STEP_PIN                         26
 #endif
@@ -196,7 +246,7 @@
 #ifndef E1_CS_PIN
   #define E1_CS_PIN                      AUX2_07
 #endif
-
+#endif //(else)FOAMCUTTER
 //
 // Temperature Sensors
 //
